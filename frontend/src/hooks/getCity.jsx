@@ -20,7 +20,7 @@ function getCity() {
 
         try {
           // 🔑 apna Geoapify API key yaha lagao
-          const apiKey = "812d749999de462e9df7ca070383975b";
+          const apiKey = "006708c6be9640f993851b50d0919aeb";
 
           const response = await fetch(
             `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${apiKey}`
