@@ -17,7 +17,7 @@ const app=express()
 const server=http.createServer(app)
 const io=new Server(server,{
      cors: {
-    origin: "https://vingo-d8ad.onrender.com" // production में specific domain डालना
+    origin: ["http://localhost:5173", "https://vingo-d8ad.onrender.com"], // production में specific domain डालना
     methods: ["GET", "POST"],
     credentials: true  
   }
