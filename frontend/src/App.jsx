@@ -18,7 +18,7 @@ import EditItem from './pages/EditItem'
 import getShopsByCity from './hooks/getShopsByCity'
 import getItemsByCity from './hooks/getItemsByCity'
 import CartPage from './pages/CartPage'
-import CheckoutPage from './pages/CheckOutPage'
+import CheckoutPage from './pages/CheckoutPage'
 import OrderPlaced from './pages/OrderPlaced'
 import MyOrders from './pages/MyOrders'
 import getOwnerPendingOrders from './hooks/getOwnerPendingOrders'
@@ -69,7 +69,7 @@ updateLocation()
       <Route path='/additem' element={userData?<AddItem/>:<Navigate to={"/signin"}/>}/>
        <Route path='/edititem/:itemId' element={userData?<EditItem/>:<Navigate to={"/signin"}/>}/>
      <Route path='/cart' element={userData?<CartPage/>:<Navigate to={"/signin"}/>}/>
-     <Route path='/checkout' element={userData?<CheckOutPage/>:<Navigate to={"/signin"}/>}/>
+     <Route path='/checkout' element={userData?<CheckoutPage/>:<Navigate to={"/signin"}/>}/>
       <Route path='/order-placed' element={userData?<OrderPlaced/>:<Navigate to={"/signin"}/>}/>
       <Route path='/my-orders' element={userData?<MyOrders/>:<Navigate to={"/signin"}/>}/>
       <Route path='/pending-orders' element={userData?<PendingOrders/>:<Navigate to={"/signin"}/>}/>
