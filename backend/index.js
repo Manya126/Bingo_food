@@ -11,38 +11,45 @@ import orderRouter from "./routes/order.routes.js"
 import http from "http"
 import { Server } from "socket.io"
 import socketHandler from "./socket.js"
+
 dotenv.config()
 const port = process.env.PORT || 5000
-const app=express()
-const server=http.createServer(app)
-const io=new Server(server,{
-     cors: {
-    origin: ["http://localhost:5173", "https://vingo-d8ad.onrender.com"], // production में specific domain डालना
+const app = express()
+const server = http.createServer(app)
+
+// Define allowed origins in one place for consistency
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://vingo-d8ad.onrender.com"
+];
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
-    credentials: true  
+    credentials: true
   }
-})
+});
+
 app.set("io", io);
+
+// This is the line that was causing the error. It must be an array.
 app.use(cors({
-    origin:"http://localhost:5173","https://vingo-d8ad.onrender.com"
-    credentials:true
+  origin: allowedOrigins,
+  credentials: true
 }))
+
 app.use(express.json())
 app.use(cookieParser())
-app.use("/api/auth",authRouter)
-app.use("/api/user",userRouter)
-app.use("/api/shop",shopRouter)
-app.use("/api/item",itemRouter)
-app.use("/api/order",orderRouter)
-
-
+app.use("/api/auth", authRouter)
+app.use("/api/user", userRouter)
+app.use("/api/shop", shopRouter)
+app.use("/api/item", itemRouter)
+app.use("/api/order", orderRouter)
 
 socketHandler(io)
 
-
-
-
-server.listen(port,()=>{
-    console.log(`server started at ${port}`)
-    connectDb()
+server.listen(port, () => {
+  console.log(`server started at ${port}`)
+  connectDb()
 })
